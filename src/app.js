@@ -4,7 +4,7 @@ import VpInt from "./modules/class/inview.js";
 import Dom from "./modules/class/dom.js";
 import Utils from "./modules/utils.js";
 import Gl from "./modules/gl/gl";
-// import Router from "./modules/router";
+import { Router } from "./modules/router";
 
 import { isTablet } from "./modules/utils/agents.js";
 
@@ -30,10 +30,21 @@ export default class App {
 
     // dom
     this.dom = new Dom();
-    // this.router = new Router();
+
+    this.router = new Router();
+    this.router.on("T_START", (data) => this.onRouteChange(data));
+
     this.initEvents();
 
     this.raf();
+  }
+
+  onRouteChange({ current, next }) {
+    this.router.swap();
+
+    // setTimeout(() => {
+    //   console.clear();
+    // }, 3000);
   }
 
   initEvents() {
