@@ -206,6 +206,19 @@ export default class {
   }
 
   /**
+   * Attached Events
+   */
+
+  scrollTo(val, instant = false) {
+    // action
+    this.y.target = val;
+    if (instant) {
+      this.y.current = val;
+      this.move();
+    }
+  }
+
+  /**
    * Utils and Fallbacks
    */
 

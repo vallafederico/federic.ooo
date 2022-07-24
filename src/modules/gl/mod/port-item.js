@@ -63,6 +63,8 @@ export default class extends Quad {
       u_camera: gl.camera.mat,
       u_scale: [pos.width, pos.height],
     });
+
+    // console.log("domQuad:", this.ref);
   }
 
   render(t, y) {
@@ -131,7 +133,12 @@ export default class extends Quad {
 
     // + reset click on scroll away
     if (this.a.clickA) this.a.clickA.kill();
-    this.a.click = 0;
+
+    if (this.a.click) {
+      // reset dom overlay
+      this.a.click = 0;
+      this.ref.ovly.classList.toggle("inview");
+    }
   }
 
   hoverIn() {
@@ -159,5 +166,8 @@ export default class extends Quad {
       duration: 1.2,
       ease: "expo.out",
     });
+
+    // dom
+    this.ref.ovly.classList.toggle("inview");
   }
 }

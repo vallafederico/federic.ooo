@@ -40,11 +40,12 @@ export default class App {
   }
 
   onRouteChange({ current, next }) {
-    this.router.swap();
+    // console.log(current, next);
 
-    // setTimeout(() => {
-    //   console.clear();
-    // }, 3000);
+    this.dom.toggleCSSAnimation().then(() => {
+      this.router.swap();
+      if (this.scroll) this.scroll.scrollTo(0, true);
+    });
   }
 
   initEvents() {
